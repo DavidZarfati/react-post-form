@@ -6,7 +6,7 @@ const initialFormData = {
   author: "",
   title: "",
   body: "",
-  pubblico: "",
+  pubblico: "pubblico",
 }
 
 function App() {
@@ -27,7 +27,7 @@ function App() {
   function GestisciClick(event) {
     event.preventDefault();
     setCards([...cards, formData]);
-    setFormData(initialFormData); // reset form
+    setFormData(initialFormData);
   }
 
   return (
@@ -67,16 +67,23 @@ function App() {
               </div>
 
 
-              <div className="col-12">
+              <div className="col-6">
                 <button onClick={GestisciClick}>Invia</button>
+              </div>
+              <div className="col-6">
+                <input type="radio" name="pubblico" id="pubblico" value="pubblico" checked={formData.pubblico === "pubblico"} onChange={updateFormData} />
+                <label htmlFor="junior">pubblico</label>
+                <input type="radio" name="pubblico" id="privato" value="privato" checked={formData.pubblico === "privato"} onChange={updateFormData} />
+                <label htmlFor="middle">privato</label>
               </div>
 
               {cards.length > 0 && cards.map((card, index) => (
-                <div className="col-12 col-4" key={index}>
-                  <div className="card">
+                <div className="col-6" key={index}>
+                  <div className={card.pubblico === "pubblico" ? "card bg-primary" : "card bg-danger"}>
                     <div className="card-header">{card.title} written by: {card.author}</div>
                     <div className="card-body">
                       <p>{card.body}</p>
+                      <h6>{card.pubblico === "pubblico" ? "se la carta è blu vuol dire che il post è pubblico" : "se la carta è rossa vuol dire che e privato(potrei scegliere di non farlo vedere con d-none)"}</h6>
                     </div>
                   </div>
                 </div>
@@ -94,7 +101,7 @@ function App() {
 
 
         </div>
-      </div>
+      </div >
     </>
   )
 }

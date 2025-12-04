@@ -1,0 +1,15 @@
+body {
+    padding: 40px;
+}
+
+.card {
+    margin-bottom: 40px;
+}
+
+#pubblico {
+    margin: 10px;
+}
+
+#privato {
+    margin: 10px;
+}
